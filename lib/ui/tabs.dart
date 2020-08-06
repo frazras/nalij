@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nalij/services/api.dart';
 import 'package:nalij/ui/articlepreview.dart';
+import 'package:nalij/ui/playlist.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 
 
@@ -57,7 +59,7 @@ class _TabsState extends State<Tabs> {
                     child:Row(
                       children: <Widget>[
                         Icon(Icons.local_library),
-                        Text("Categories"),
+                        Text("Categories?"),
                       ],
                     ),
                   )
@@ -75,8 +77,8 @@ class _TabsState extends State<Tabs> {
           ),
           body: TabBarView(
             children: [
-              ArticlePreview(),
-              Icon(Icons.playlist_play),
+              PlayList(articles: ArticleApi.fetchArticles()),
+              Icon(Icons.trending_up),
               Icon(Icons.local_library),
               //Icon(Icons.directions_bike),
             ],
