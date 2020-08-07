@@ -36,16 +36,6 @@ class _TabsState extends State<Tabs> {
               tabs: [
                 Tab(
                   child: FittedBox(fit:BoxFit.fitWidth,
-                      child:Row(
-                      children: <Widget>[
-                        Icon(Icons.trending_up),
-                        Text("Trending"),
-                      ],
-                    ),
-                  )
-                ),
-                Tab(
-                  child: FittedBox(fit:BoxFit.fitWidth,
                     child:Row(
                       children: <Widget>[
                         Icon(Icons.playlist_play),
@@ -55,11 +45,21 @@ class _TabsState extends State<Tabs> {
                   )
                 ),
                 Tab(
+                    child: FittedBox(fit:BoxFit.fitWidth,
+                      child:Row(
+                        children: <Widget>[
+                          Icon(Icons.trending_up),
+                          Text("Trending"),
+                        ],
+                      ),
+                    )
+                ),
+                Tab(
                   child: FittedBox(fit:BoxFit.fitWidth,
                     child:Row(
                       children: <Widget>[
                         Icon(Icons.local_library),
-                        Text("Categories?"),
+                        Text("Topics"),
                       ],
                     ),
                   )
