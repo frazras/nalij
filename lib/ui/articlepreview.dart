@@ -110,7 +110,7 @@ class _ArticlePreviewState extends State<ArticlePreview> {
                             fontWeight: FontWeight.bold
                         )
                     ),
-                    Text(widget.article.source)
+                    Text(Uri.parse(widget.article.source).host)
                   ],
                 )
               ],
