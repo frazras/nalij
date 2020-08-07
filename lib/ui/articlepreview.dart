@@ -40,20 +40,20 @@ class _ArticlePreviewState extends State<ArticlePreview> {
                     child: Column(
                       children: <Widget>[
                         SizedBox(
-                        width: (SizeConfig.safeBlockHorizontal * 65) - 16,
-                        height: (SizeConfig.safeBlockVertical * 21),
+                        width: (SizeConfig.safeBlockHorizontal * 65),
+                        //height: (SizeConfig.safeBlockVertical * 21),
                           child: AutoSizeText(
                           widget.article.title,
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: SizeConfig.safeBlockHorizontal * 5,
                             fontWeight: FontWeight.bold,
                             ),
                           textAlign: TextAlign.left,
                           ),
                         ),
                         SizedBox(
-                          width: (SizeConfig.safeBlockHorizontal * 65) - 16,
-                          height: (SizeConfig.safeBlockVertical * 14),
+                          width: (SizeConfig.safeBlockHorizontal * 65),
+                          //height: (SizeConfig.safeBlockVertical * 14),
                           child:
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -126,12 +126,12 @@ class _ArticlePreviewState extends State<ArticlePreview> {
     return Row(
       children: <Widget>[
         Icon(icon,
-            size: 18
+            size: SizeConfig.safeBlockHorizontal * 5
           ),
         Text(text,
           style: TextStyle(
               color: Colors.black,
-              fontSize: 13,
+              fontSize: SizeConfig.safeBlockHorizontal * 3,
               fontWeight: FontWeight.bold
           ),
         )
