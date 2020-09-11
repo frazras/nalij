@@ -1,6 +1,9 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:nalij/models/article.dart';
+import 'package:nalij/services/articleList.dart';
 import 'package:nalij/ui/articlepreview.dart';
+import 'package:provider/provider.dart';
 
 class PlayList extends StatefulWidget {
   final Future<List<Article>> articles;
@@ -19,7 +22,10 @@ class _PlayListState extends State<PlayList> {
         initialData: [],
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data != null) {
+            if (snapshot.data.length != 0) {
+              var articles = Provider.of<ArticleList>(context, listen: false);
+              articles.playList =  snapshot.data;
+              //articles.audioPlayer.audioPlayer;
               return Flexible(
                   child: new RefreshIndicator(
                       onRefresh: refresh,
@@ -28,19 +34,23 @@ class _PlayListState extends State<PlayList> {
                           itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext context, int index) {
                             return ArticlePreview(
-                                article: snapshot.data[index]
+                                article: snapshot.data[index],
+                                index: index
                             );
                           }
                       )
                   )
               );
             } else {
-              return Text("Data is NULL");
+              return Center(child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircularProgressIndicator(),
+              ));
             }
           } else {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
-          });
+        });
   }
 
   Future<Null> refresh() {
