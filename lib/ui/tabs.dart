@@ -1,9 +1,9 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:miniplayer/miniplayer.dart';
 import 'package:nalij/services/api.dart';
 import 'package:nalij/services/articleList.dart';
+import 'package:nalij/services/miniPlayerStatus.dart';
+import 'package:nalij/services/player.dart';
 import 'package:nalij/ui/playerUi.dart';
 import 'package:nalij/ui/playlist.dart';
 import 'package:provider/provider.dart';
@@ -21,12 +21,13 @@ class _TabsState extends State<Tabs> {
 
   @override
   Widget build(BuildContext context) {
-    var articles = Provider.of<ArticleList>(context);
+    var miniPlayer = Provider.of<MiniPlayerStatus>(context, listen: true);
+    print("REPAINT..........................");
     return MaterialApp(
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
-            appBar: articles.isFullPlayer ? null : AppBar(
+            appBar: miniPlayer.isFullPlayer ? null : AppBar(
               leading: Icon(Icons.menu),
               actions: <Widget>[
                 Icon(
@@ -79,7 +80,18 @@ class _TabsState extends State<Tabs> {
                 ),
               ),
             ),
-            body: miniPlayerBar(context),
+            body: Stack(
+                children: [
+                  TabBarView(
+                    children: [
+                      PlayList(articles: ArticleApi.fetchArticles()),
+                      Icon(Icons.trending_up),
+                      Icon(Icons.local_library),
+                    ],
+                  ),
+                  getPlayer(context)
+                ]
+            ),
             //bottomNavigationBar: bottomPlayer(context)
         ),
       ),
@@ -93,61 +105,17 @@ class _TabsState extends State<Tabs> {
     );
   }
 
-  bool hideAppBar(){
-    bool isHidden = false;
-    print("VVVVVVVVVVVV");
-    Consumer<ArticleList>(
-        builder: (context, articles, child) {
-          isHidden = articles.isFullPlayer;
-          print(isHidden);
-          return Container();
-        });
-    return isHidden;
-  }
-
-  Widget miniPlayerBar(context) {
-    return  Stack(
-      children: [
-        TabBarView(
-          children: [
-            PlayList(articles: ArticleApi.fetchArticles()),
-            Icon(Icons.local_library),
-            Icon(Icons.local_library),
-            //Icon(Icons.directions_bike),
-          ],
-        ),
-        Miniplayer(
-        minHeight: 70,
-        maxHeight: 570,
-        builder: (height, percentage) {
-          return Consumer<ArticleList>(
-            builder: (context, articles, child) {
-              if (articles.isFullPlayer && percentage < 1) {
-                articles.isFullPlayer = false;
-              }
-
-              if (!articles.isFullPlayer && percentage == 1) {
-                articles.isFullPlayer = true;
-              }
-
-              print("Rebuild Player");
-              print(height);
-              print(percentage);
-              print(articles.isFullPlayer);
-
-              return articles.currentIndex == null
-                ? Container()
-                : BottomAppBar(
-                  child: PlayerUi(
-                      article: articles.playList[articles.currentIndex],
-                      audioPlayer: articles.audioPlayer,
-                      percentage: percentage
-                    ),
-                  );
-            },
-          );
-        },
-      )]
+  Widget getPlayer(context){
+    var articles = Provider.of<ArticleList>(context, listen: false);
+    var player = Provider.of<Player>(context, listen: false);
+    return Consumer2<ArticleList, Player>(
+        builder: (context, articles, player, child) {
+          return articles.playList == null
+              ? Container()
+              : PlayerUi(article: articles.playList[articles.currentIndex],
+                  audioPlayer: player
+                );
+        }
     );
   }
 }

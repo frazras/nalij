@@ -1,7 +1,7 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nalij/services/articleList.dart';
+import 'package:nalij/services/miniPlayerStatus.dart';
+import 'package:nalij/services/player.dart';
 import 'package:nalij/ui/tabs.dart';
 import 'package:provider/provider.dart';
 
@@ -13,8 +13,19 @@ class Nalij extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ArticleList>(
-        create: (context) => ArticleList(), child: Tabs()
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<MiniPlayerStatus>(
+            create: (context) => MiniPlayerStatus()
+          ),
+          ChangeNotifierProvider<Player>(
+          create: (context) => Player()
+          ),
+          ChangeNotifierProvider<ArticleList>(
+          create: (context) => ArticleList()
+          )
+        ],
+        child:  Tabs()
     );
   }
 }

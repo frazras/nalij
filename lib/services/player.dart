@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
@@ -34,20 +36,29 @@ class Player with ChangeNotifier {
 
   void onDurationChanged(Function callback) {
     audioPlayer.onDurationChanged.listen(callback);
-    notifyListeners();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => notifyListeners());
   }
 
   void onAudioPositionChanged(Function callback) {
     audioPlayer.onAudioPositionChanged.listen(callback);
-    notifyListeners();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => notifyListeners());
   }
 
   void onPlayerStateChanged(Function callback) {
     audioPlayer.onPlayerStateChanged.listen(callback);
-    notifyListeners();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => notifyListeners());
+
   }
 
+  void audioPlayerHandler(AudioPlayerState value) => print('state => $value');
+
   void play(String url) async {
+    if (Platform.isIOS) {
+      audioPlayer.monitorNotificationStateChanges(audioPlayerHandler);
+    }
     await audioPlayer.play(url);
     notifyListeners();
   }

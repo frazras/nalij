@@ -25,11 +25,11 @@ class _PlayListState extends State<PlayList> {
             if (snapshot.data.length != 0) {
               var articles = Provider.of<ArticleList>(context, listen: false);
               articles.playList =  snapshot.data;
-              //articles.audioPlayer.audioPlayer;
               return Flexible(
                   child: new RefreshIndicator(
                       onRefresh: refresh,
                       child: new ListView.builder(
+                          cacheExtent: 9999,
                           physics: const AlwaysScrollableScrollPhysics(),
                           itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext context, int index) {

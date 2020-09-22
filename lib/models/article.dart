@@ -28,7 +28,7 @@ class Article {
   final String author;
   final String source;
   final String duration;
-  final String image;
+  String image;
   final int plays;
   final int likes;
   final int comments;

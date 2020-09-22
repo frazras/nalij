@@ -1,31 +1,33 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nalij/models/article.dart';
 import 'package:nalij/services/articleList.dart';
 import 'package:nalij/services/player.dart';
-import 'package:nalij/ui/playerUi.dart';
 import 'package:nalij/ui/sizeConfig.dart';
 import 'package:provider/provider.dart';
 
 class ArticlePreview extends StatefulWidget {
-  final Article article;
+  Article article;
   final int index;
   ArticlePreview({Key key, @required this.article, @required this.index}) : super(key: key);
   @override
   _ArticlePreviewState createState() => _ArticlePreviewState();
 }
 
-class _ArticlePreviewState extends State<ArticlePreview> with ChangeNotifier{
+class _ArticlePreviewState extends State<ArticlePreview> {
   @override
   Widget build(BuildContext context) {
 
     SizeConfig().init(context);
+    widget.article.image = "https://picsum.photos/id/${widget.index * 20}/1280/1000";
     return InkWell(
       onTap: () {
           var articles = Provider.of<ArticleList>(context, listen: false);
+          var player = Provider.of<Player>(context, listen: false);
           articles.currentIndex = widget.index;
-          articles.audioPlayer.play(widget.article.narrationUrl);
+          player.audioPlayer.play(widget.article.narrationUrl);
       },
       child: Container(
           //height: 180.0,
@@ -38,7 +40,11 @@ class _ArticlePreviewState extends State<ArticlePreview> with ChangeNotifier{
               Container(
                 padding: const EdgeInsets.all(8.0),
                 width: (SizeConfig.safeBlockHorizontal * 35) - 16,
-                child: Image.network(widget.article.image),
+                child: CachedNetworkImage(
+                  imageUrl: widget.article.image,
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
               Column(
                 children: <Widget>[
@@ -99,7 +105,8 @@ class _ArticlePreviewState extends State<ArticlePreview> with ChangeNotifier{
             padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
             child: Column(
               children: <Widget>[
-                Row(
+              widget.article.author == "" ? Container()
+                : Row(
                   children: <Widget>[
                     Text("Author: ",
                         style: TextStyle(fontWeight: FontWeight.bold)),
