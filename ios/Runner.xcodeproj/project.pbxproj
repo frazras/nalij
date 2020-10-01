@@ -336,7 +336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build;\nxattr -cr .\n";
+			shellScript = "/usr/bin/xattr -cr \"/Users/frazras/Documents/Dev/nalij/build/ios/\";\n/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build;\n";
 		};
 		E7F9E867EBB7E916FEF45D65 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
