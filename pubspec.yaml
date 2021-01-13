@@ -31,11 +31,15 @@ dependencies:
   auto_size_text: ^2.1.0
   flutter_svg: ^0.18.0
   http: ^0.12.2
-  audioplayers: ^0.16.0
+  audioplayers: ^0.17.2
   provider: ^4.3.2+2
   miniplayer: ^0.4.1+2
   cached_network_image: ^2.3.2+1
   webfeed: ^0.6.0
+  firebase_core: "0.5.3"
+  firebase_auth: "^0.18.4+1"
+
+
 
 
 

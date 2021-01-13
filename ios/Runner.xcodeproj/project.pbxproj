@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
-		3E503B7825ADCD64000890B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E503B7725ADCD64000890B8 /* GoogleService-Info.plist */; };
+		3E64CECE25AF19F8004E07D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E64CECD25AF19F8004E07D8 /* GoogleService-Info.plist */; };
 		3E9DD39F25ADB1AF003881BF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9DD39D25ADB1AF003881BF /* StoreKit.framework */; };
 		3E9DD3A125ADB1CA003881BF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9DD39C25ADB180003881BF /* libc++.tbd */; };
 		3E9DD3A225ADB1E4003881BF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9DD39A25ADB124003881BF /* libsqlite3.tbd */; };
@@ -40,7 +40,7 @@
 		2E91CA2263CF0C76A4C32162 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		3DFD796C6618419BAC7857A3 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
-		3E503B7725ADCD64000890B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3E64CECD25AF19F8004E07D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E9DD39A25ADB124003881BF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		3E9DD39B25ADB16D003881BF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		3E9DD39C25ADB180003881BF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -115,7 +115,7 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
-				3E503B7725ADCD64000890B8 /* GoogleService-Info.plist */,
+				3E64CECD25AF19F8004E07D8 /* GoogleService-Info.plist */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
@@ -221,7 +221,7 @@
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
-				3E503B7825ADCD64000890B8 /* GoogleService-Info.plist in Resources */,
+				3E64CECE25AF19F8004E07D8 /* GoogleService-Info.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 			);
